@@ -7,7 +7,7 @@ namespace genericTest.Services
 
         public bool check(DateTime time, int ttl)
         {
-            return DateTime.Now > time.AddHours(ttl);
+            return DateTime.Now < time.AddHours(ttl);
         }
     }
 }
