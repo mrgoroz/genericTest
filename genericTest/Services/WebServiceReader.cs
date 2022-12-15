@@ -6,18 +6,14 @@ namespace genericTest.Services
 {
     internal class WebServiceReader<T> : IWebServiceReader<T>
     {
-        string TOKEN_FILE_PATH = "C:\\Users\\Golan\\source\\repos\\genericTest\\genericTest\\token.txt";
-
-        string mode { get; set; }
-        private string path;
+        private readonly string API_URL = "https://openexchangerates.org/api/latest.json?app_id=";
+        private readonly string TOKEN_FILE_PATH = "C:\\Users\\Golan\\source\\repos\\genericTest\\genericTest\\token.txt";
 
         private readonly IHttpClientFactory _httpClientFactory;
 
 
         public WebServiceReader(IHttpClientFactory httpClientFactory)
         {
-            this.mode = "R";
-            this.path = "";
             _httpClientFactory = httpClientFactory;
         }
 
@@ -30,7 +26,7 @@ namespace genericTest.Services
             }
             var httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get,
-                $"https://openexchangerates.org/api/latest.json?app_id={token}")
+                $"{API_URL}{token}")
             {
                 Headers =
             {
