@@ -4,8 +4,8 @@ namespace genericTest.Services
 {
     internal class MemoryReader<T> : IMemoryReader<T>
     {
-        string mode { get; set; }
-        int ttl { get; set; }
+        string Mode { get; set; }
+        int Ttl { get; set; }
         private ResourcesValue<T> resourceValue;
 
         private readonly IFileSystemReader<T> _next;
@@ -16,18 +16,18 @@ namespace genericTest.Services
         {
             _next = next;
             _dateTimeChecker = dateTimeChecker;
-            mode = "RW";
-            ttl = 1;
+            Mode = "RW";
+            Ttl = 1;
         }
 
-        async Task<T> IResourceReader<T>.getValue()
+        async Task<T> IResourceReader<T>.GetValue()
         {
-            if (resourceValue != null && _dateTimeChecker.check(resourceValue.insertTime, ttl))
+            if (resourceValue != null && _dateTimeChecker.Check(resourceValue.InsertTime, Ttl))
             {
-                return resourceValue.value;
+                return resourceValue.m_value;
             }
-            T newValue = await _next.getValue();
-            if (mode.Contains('W'))
+            T newValue = await _next.GetValue();
+            if (Mode.Contains('W'))
             {
                 resourceValue = new ResourcesValue<T>(newValue, DateTime.Now);
             }

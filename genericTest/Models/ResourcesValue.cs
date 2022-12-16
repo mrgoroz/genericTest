@@ -2,12 +2,12 @@
 {
     internal class ResourcesValue<T>
     {
-        public T value { get; set; }
-        public DateTime insertTime { get; set; }
+        public T m_value { get; set; }
+        public DateTime InsertTime { get; set; }
         public ResourcesValue(T value, DateTime insertTime)
         {
-            this.value = value;
-            this.insertTime = insertTime;
+            this.m_value = value;
+            this.InsertTime = insertTime;
         }
     }
 }

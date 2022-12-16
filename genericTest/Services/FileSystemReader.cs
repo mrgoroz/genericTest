@@ -6,9 +6,9 @@ namespace genericTest.Services
     internal class FileSystemReader<T> : IFileSystemReader<T>
     {
 
-        string mode { get; set; }
-        int ttl { get; set; }
-        string path { get; set; }
+        string Mode { get; set; }
+        int Ttl { get; set; }
+        string Path { get; set; }
 
         private readonly IWebServiceReader<T> _next;
         private readonly IDateTimeChecker _dateTimeChecker;
@@ -17,31 +17,31 @@ namespace genericTest.Services
         {
             _next = next;
             _dateTimeChecker = dateTimeChecker;
-            mode = "RW";
-            ttl = 4;
-            path = "Value.json";
+            Mode = "RW";
+            Ttl = 4;
+            Path = "Value.json";
         }
 
-        public async Task<T> getValue()
+        public async Task<T> GetValue()
         {
             ResourcesValue<T> resourceValue = null;
-            if (File.Exists(path))
+            if (File.Exists(Path))
             {
-                using (StreamReader r = new StreamReader(path))
+                using (StreamReader r = new StreamReader(Path))
                 {
                     string json = await r.ReadToEndAsync();
                     resourceValue = JsonConvert.DeserializeObject<ResourcesValue<T>>(json);
                 }
             }
-            if (resourceValue != null && _dateTimeChecker.check(resourceValue.insertTime, ttl))
+            if (resourceValue != null && _dateTimeChecker.Check(resourceValue.InsertTime, Ttl))
             {
-                return resourceValue.value;
+                return resourceValue.m_value;
             }
-            T newValue = await _next.getValue();
-            if (mode.Contains('W'))
+            T newValue = await _next.GetValue();
+            if (Mode.Contains('W'))
             {
                 resourceValue = new ResourcesValue<T>(newValue, DateTime.Now);
-                await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(resourceValue));
+                await File.WriteAllTextAsync(Path, JsonConvert.SerializeObject(resourceValue));
             }
             return newValue;
         }

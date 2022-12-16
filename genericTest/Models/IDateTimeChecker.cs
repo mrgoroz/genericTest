@@ -2,6 +2,6 @@
 {
     internal interface IDateTimeChecker
     {
-        public bool check(DateTime time, int ttl);
+        public bool Check(DateTime time, int ttl);
     }
 }

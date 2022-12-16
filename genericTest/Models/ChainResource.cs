@@ -13,7 +13,7 @@ namespace genericTest.Models
 
         async Task<T> IChainResource<T>.GetValue()
         {
-            return await _memoryReader.getValue();
+            return await _memoryReader.GetValue();
         }
     }
 }

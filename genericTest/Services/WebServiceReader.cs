@@ -11,13 +11,12 @@ namespace genericTest.Services
 
         private readonly IHttpClientFactory _httpClientFactory;
 
-
         public WebServiceReader(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        async Task<T> IResourceReader<T>.getValue()
+        async Task<T> IResourceReader<T>.GetValue()
         {
             string token = "";
             if (File.Exists(TOKEN_FILE_PATH))

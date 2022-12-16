@@ -2,6 +2,6 @@
 {
     internal interface IResourceReader<T>
     {
-        public Task<T> getValue();
+        public Task<T> GetValue();
     }
 }
