@@ -1,4 +1,5 @@
-﻿using genericTest.Services;
+﻿using genericTest.IServices;
+using genericTest.Services;
 
 namespace genericTest.Models
 {

@@ -1,4 +1,4 @@
-﻿namespace genericTest.Models
+﻿namespace genericTest.IServices
 {
     internal interface IWebServiceReader<T> : IResourceReader<T>
     {

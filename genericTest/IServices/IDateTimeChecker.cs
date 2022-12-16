@@ -1,4 +1,4 @@
-﻿namespace genericTest.Models
+﻿namespace genericTest.IServices
 {
     internal interface IDateTimeChecker
     {
